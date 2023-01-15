@@ -1,23 +1,35 @@
-#include<stdio.h>
-#include<pthread.h>
-#include<stdlib.h>
-void *firefox(void *arg)
-{
-      system("firefox");
-      pthread_exit(0);
-}
- void *text(void *arg)
-{
-     System("hello");
-     pthred_exit(0);
-}
- void main()
-{
-pthread_t t1,t2;
-pthread_create(&t1,NULL,firefox,NULL);
-pthread_create(&t2,NULL,hello,NULL);
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
 
-pthread_join(t1,NULL);
-pthread_join(t2,NULL);
-printf("\nthreads are finished");
+void *print_message_function( void *ptr );
+
+main()
+{
+     pthread_t thread1, thread2;
+     char *message1 = "Thread 1";
+     char *message2 = "Thread 2";
+     char *message3 = "Thread 3";
+     int  iret1, iret2;
+
+
+     iret1 = pthread_create( &thread1, NULL, function, (void*) message1);
+     iret2 = pthread_create( &thread2, NULL, function, (void*) message2);
+     iret3 = pthread_create( &thread3, NULL, function, (void*) message3);
+
+     pthread_join( thread1, NULL);
+     pthread_join( thread2, NULL); 
+      pthread_join( thread3, NULL);
+
+     printf("Thread 1 returns: %d\n",iret1);
+     printf("Thread 2 returns: %d\n",iret2);
+     printf("Thread 3 returns: %d\n",iret3);
+     exit(0);
+}
+
+void *function( void *ptr )
+{
+     char *message;
+     message = (char *) ptr;
+     printf("%s \n", message);
 }
