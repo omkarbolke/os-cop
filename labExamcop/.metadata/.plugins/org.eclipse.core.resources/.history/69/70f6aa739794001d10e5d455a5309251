@@ -1,0 +1,13 @@
+package cop_labendExam;
+
+public class main {
+
+	public static void main(String[] args) {
+
+		long n = 123;
+		System.out.println(isDivisible(n));
+
+	}
+
+}
+
